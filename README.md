@@ -1,44 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Anti COVID-19
 
-## Available Scripts
+### `Projeto`
 
-In the project directory, you can run:
+O Anti COVID-19 é um aplicativo react js que consome os dados disponibilizados pelas Secretarias de Saúde das Unidades Federativas e compilados numa API pelo Álvaro Justen e colaboradores/Brasil.IO.</br>
 
-### `yarn start`
+O objetivo deste app é tornar público os números de casos confirmados e de óbitos por COVID-19 no Brasil. Tal iniciativa é uma resposta à atitude do Governo Federal em omitir esses dados do site do Ministério da Saúde.</br>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+O app se encontra disponível gratuitamente na playstore e pode ser utilizado por qualquer pessoa que tenha interesse por esses dados.</br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+### `Colaboradores`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Caso você seja um desenvolvedor e queira contribuir com o aplicativo de alguma forma, basta entrar em contato comigo para se tornar um colaborador. As branchs criadas pelos colaboradores serão mergidas à master após serem testadas por mim, caso sejam pertinentes e não comprometam as funcionalidades já existentes no aplicativo.</br>
 
-### `yarn build`
+### `Autores`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Alexsander Ventricci** - *Initial work* - [Ventricci](https://github.com/Ventricci)</br>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `Licença`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
+<!-- ### Links Úteis
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify -->
