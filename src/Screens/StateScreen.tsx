@@ -21,7 +21,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 100px 30px 100px 30px;
-
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 
@@ -53,16 +53,7 @@ async function getCases(cases: Cases[], setCases: Function) {
   );
   if (response.status == 200) {
     let responseObject = await response.json();
-    responseObject.results.map((state: any) => {
-      setCases((cases: Cases[]) => [
-        ...cases,
-        {
-          state: state.state,
-          deaths: state.deaths,
-          confirmed: state.confirmed,
-        },
-      ]);
-    });
+    setCases(responseObject.results);
   } else {
     console.log(response.status);
   }
@@ -94,7 +85,7 @@ export default function StateScreen() {
       initial={{ opacity: 0, x: "200vw" }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.75 }}
+      transition={{ duration: 0.25 }}
     >
       <TitleBox>
         <Title>{"COVID-19 por estado"}</Title>

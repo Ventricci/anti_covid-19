@@ -15,7 +15,6 @@ interface Props {
 }
 
 const CardBox = styled(motion.div)`
-  box-sizing: border-box;
   width: 100%;
   height: 100px;
   margin: 10px 0px 10px 0px;
@@ -53,7 +52,7 @@ const CardBody = styled(motion.div)`
   flex-direction: column;
   padding: 5px;
 
-  border-left: 3px solid rgb(255, 255, 255, 0.5);
+  border-left: 2px solid rgb(255, 255, 255, 0.5);
 `;
 
 const CardValue = styled.span`

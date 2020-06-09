@@ -23,7 +23,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 100px 30px 100px 30px;
-
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 
@@ -109,11 +109,11 @@ export default function HomeScreen() {
   return (
     <Container
       initial={
-        location.state.prevLocation == "/question" ? "questionOut" : "stateOut"
+        location.state?.prevLocation == "/question" ? "questionOut" : "stateOut"
       }
       animate={"in"}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.75 }}
+      transition={{ duration: 0.25 }}
       variants={pageVariants}
     >
       <TitleBox>

@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 interface Props {
   state: string;
@@ -19,7 +19,7 @@ const CardBox = styled(motion.div)`
   display: flex;
   flex-direction: row;
 
-  border: 3px solid #87ceeb;
+  border: 2px solid #87ceeb;
   border-radius: 20px;
   padding: 5px;
   background-color: #ffffff;
@@ -50,7 +50,7 @@ const CardBody = styled(motion.div)`
   flex-direction: column;
   padding: 5px;
 
-  border-left: 3px solid rgb(135, 206, 235, 0.5);
+  border-left: 2px solid rgb(135, 206, 235, 0.5);
 `;
 
 const CardContent = styled.span`
@@ -65,10 +65,10 @@ const CardContent = styled.span`
 `;
 
 export default function StateCard(props: Props) {
-  let location = useLocation();
+  let history = useHistory();
 
   return (
-    <CardBox>
+    <CardBox onClick={() => history.push("/city", { state: props.state })}>
       <CardImage>
         <span
           css={css`
@@ -79,8 +79,12 @@ export default function StateCard(props: Props) {
         </span>
       </CardImage>
       <CardBody>
-        <CardContent>Casos de óbitos: {props.deaths.toLocaleString("pt-BR")}</CardContent>
-        <CardContent>Casos confirmados: {props.confirmed.toLocaleString("pt-BR")}</CardContent>
+        <CardContent>
+          Casos de óbitos: {props.deaths.toLocaleString("pt-BR")}
+        </CardContent>
+        <CardContent>
+          Casos confirmados: {props.confirmed.toLocaleString("pt-BR")}
+        </CardContent>
       </CardBody>
     </CardBox>
   );
