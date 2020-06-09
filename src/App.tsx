@@ -1,9 +1,15 @@
 /** @jsx jsx */
 import "typeface-mako";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
+import { motion, AnimatePresence } from "framer-motion";
 import CityScreen from "./Screens/CityScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import QuestionScreen from "./Screens/QuestionScreen";
@@ -27,20 +33,20 @@ export default function App() {
     <Root>
       <Router>
         <Header />
-        <Switch>
-          <Route path="/state">
-            <StateScreen />
-          </Route>
-          <Route path="/city">
-            <CityScreen />
-          </Route>
-          <Route path="/question">
-            <QuestionScreen />
-          </Route>
-          <Route path="/">
-            <HomeScreen />
-          </Route>
-        </Switch>
+        <Route
+          render={({ location }) => {
+            return (
+              <AnimatePresence exitBeforeEnter>
+                <Switch location={location} key={location.pathname}>
+                  <Route path="/state" component={StateScreen} />
+                  <Route path="/city" component={CityScreen} />
+                  <Route path="/question" component={QuestionScreen} />
+                  <Route path="/" component={HomeScreen} />
+                </Switch>
+              </AnimatePresence>
+            );
+          }}
+        />
         <Footer />
       </Router>
     </Root>

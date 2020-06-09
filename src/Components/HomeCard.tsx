@@ -3,8 +3,6 @@ import "typeface-mako";
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 
 const deaths = require("../Images/dead.png");
 const coronaVirus = require("../Images/corona_virus.png");
@@ -98,7 +96,7 @@ export default function HomeCard(props: Props) {
           ? `#FF0000`
           : props.type == "confirmed"
           ? `#FF8C00`
-          : `#8B0000`};
+          : `#DAA520`};
       `}
     >
       <CardImage>

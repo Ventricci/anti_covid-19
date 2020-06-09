@@ -84,7 +84,7 @@ export default function Footer() {
         animate={selected == "home" ? "opend" : "closed"}
         variants={active}
         onClick={() => {
-          history.replace("/");
+          history.replace("/", { prevLocation: location.pathname });
         }}
       >
         <img

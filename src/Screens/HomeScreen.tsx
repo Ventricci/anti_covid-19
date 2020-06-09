@@ -2,9 +2,10 @@
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import HomeCard from "../Components/HomeCard";
 import { URL_API } from "../Config/GlobalVariables";
+import { useLocation } from "react-router-dom";
 
 interface Cases {
   deaths: number;
@@ -42,7 +43,22 @@ const Title = styled.span`
   font-size: 24px;
 `;
 
-async function getCases(setCases: any) {
+const pageVariants: Variants = {
+  in: {
+    x: 0,
+  },
+  questionOut: {
+    x: "200vw",
+  },
+  stateOut: {
+    x: "-100vw",
+  },
+  out: {
+    y: "200vh",
+  },
+};
+
+async function getCases(setCases: Function) {
   let response = await fetch(
     `${URL_API}/caso/data?is_last=True&place_type=state`,
     {
@@ -54,7 +70,6 @@ async function getCases(setCases: any) {
   );
   if (response.status == 200) {
     let responseObject = await response.json();
-    console.log(responseObject);
     let totalDeaths = 0;
     let totalConfirmed = 0;
     let epicenterState = "";
@@ -79,6 +94,7 @@ async function getCases(setCases: any) {
 }
 
 export default function HomeScreen() {
+  let location = useLocation<{ prevLocation: string }>();
   let [cases, setCases] = useState<Cases>({
     deaths: 0,
     confirmed: 0,
@@ -90,12 +106,16 @@ export default function HomeScreen() {
     getCases(setCases);
   }, []);
 
-  useEffect(() => {
-    console.log(cases);
-  }, [cases]);
-
   return (
-    <Container>
+    <Container
+      initial={
+        location.state.prevLocation == "/question" ? "questionOut" : "stateOut"
+      }
+      animate={"in"}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.75 }}
+      variants={pageVariants}
+    >
       <TitleBox>
         <Title>{"COVID-19 Brasil"}</Title>
         <Title>{new Date().toLocaleDateString("pt-BR")}</Title>
