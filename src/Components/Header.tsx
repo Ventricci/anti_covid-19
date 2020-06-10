@@ -11,19 +11,20 @@ const HeaderBox = styled.div`
   width: 100%;
   height: 85px;
 
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+
   position: absolute;
   top: 0;
   padding: 15px 30px 15px 30px;
+  justify-content: space-between;
 
   background-color: #ffffff;
+  box-shadow: 0px -10px 25px rgba(0, 0, 0, 0.25);
   font-size: 30px;
   font-weight: normal;
   color: #87ceeb;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  z-index: 1;
 `;
 
 const HeaderTitle = styled.div`

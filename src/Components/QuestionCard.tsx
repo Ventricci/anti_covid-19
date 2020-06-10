@@ -36,16 +36,60 @@ const CardBox = styled.div`
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
 `;
 
-const CardTitle = styled.div``;
+const CardHeader = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
 
-const CardContent = styled.div``;
+  padding: 5px;
+  @media (min-width: 400px) {
+    font-size: 18px;
+  }
+  @media (max-width: 400px) {
+    font-size: 16px;
+  }
+  @media (max-width: 360px) {
+    font-size: 14px;
+  }
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
+  text-align: justify;
+  font-weight: bold;
+  text-align: justify;
+  color: #87ceeb;
+`;
+
+const CardContent = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 5px;
+  @media (min-width: 400px) {
+    font-size: 16px;
+  }
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media (max-width: 360px) {
+    font-size: 12px;
+  }
+  @media (max-width: 320px) {
+    font-size: 10px;
+  }
+  text-align: justify;
+`;
 
 export default function QuestionCard(props: Props) {
   let location = useLocation();
 
   return (
     <CardContainer>
-      <CardBox></CardBox>
+      <CardBox>
+        <CardHeader>{props.title}</CardHeader>
+        <CardContent>{props.content}</CardContent>
+      </CardBox>
     </CardContainer>
   );
 }

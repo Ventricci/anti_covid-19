@@ -58,8 +58,18 @@ const CardContent = styled.span`
   display: inline-flex;
   align-items: center;
 
-  font-size: 16px;
-  line-height: 16px;
+  @media (min-width: 400px) {
+    font-size: 16px;
+    line-height: 16px;
+  }
+  @media (max-width: 400px) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+  @media (max-width: 360px) {
+    font-size: 12px;
+    line-height: 12px;
+  }
 
   padding: 0px;
 `;
@@ -68,7 +78,13 @@ export default function StateCard(props: Props) {
   let history = useHistory();
 
   return (
-    <CardBox onClick={() => history.push("/city", { state: props.state })}>
+    <CardBox
+      whileTap={{
+        scale: 0.95,
+        transitionEnd: { boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.20)" },
+      }}
+      onClick={() => history.push("/city", { state: props.state })}
+    >
       <CardImage>
         <span
           css={css`
