@@ -48,6 +48,7 @@ export default function CityScreen() {
         <Title>COVID-19 em {location.state.state}</Title>
         <Title>{new Date().toLocaleDateString("pt-BR")}</Title>
       </TitleBox>
+      
     </Container>
   );
 }
