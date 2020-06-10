@@ -23,8 +23,15 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 100px 30px 100px 30px;
+  
   overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -52,9 +59,6 @@ const pageVariants: Variants = {
   },
   stateOut: {
     x: "-100vw",
-  },
-  out: {
-    y: "200vh",
   },
 };
 

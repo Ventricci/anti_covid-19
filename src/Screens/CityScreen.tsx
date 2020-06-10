@@ -1,9 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import styled from "@emotion/styled";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { URL_API } from "../Config/GlobalVariables";
 import { useLocation } from "react-router-dom";
+import styled from "@emotion/styled";
+import InputComponent from "../Components/InputComponent";
+import React, { useEffect, useState } from "react";
+
+interface Scenario {
+  totalDeaths: number;
+  newDeaths: number;
+  totalConfirmed: number;
+  newCOnfirmed: number;
+  date: string;
+}
 
 const Container = styled(motion.div)`
   box-sizing: border-box;
@@ -14,8 +24,15 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 100px 30px 100px 30px;
+
   overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -34,8 +51,54 @@ const Title = styled.span`
   font-size: 24px;
 `;
 
+async function getCityCases(
+  city: string,
+  state: string,
+  setScenario: Function
+) {
+  let response = await fetch(
+    `${URL_API}/caso_full/data?state=${state}&city=${city}&is_last=True`,
+    {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (response.status == 200) {
+    let responseObject = await response.json();
+    if (responseObject.results.length > 0) {
+      let scenario = responseObject.results[0];
+      setScenario({
+        totalDeaths: scenario.last_available_deaths,
+        newDeaths: scenario.new_deaths,
+        totalConfirmed: scenario.last_available_confirmed,
+        newConfirmed: scenario.new_confirmed,
+        date: scenario.date,
+      });
+    } else {
+      console.log("Não encontrou");
+    }
+  } else {
+    console.log(response.status);
+  }
+}
+
 export default function CityScreen() {
   let location = useLocation<{ state: string }>();
+
+  let [search, setSearch] = useState("");
+  let [scenario, setScenario] = useState<Scenario>({
+    totalDeaths: 0,
+    newDeaths: 0,
+    totalConfirmed: 0,
+    newCOnfirmed: 0,
+    date: "",
+  });
+
+  useEffect(() => {
+    console.log(scenario);
+  }, [scenario]);
 
   return (
     <Container
@@ -48,7 +111,18 @@ export default function CityScreen() {
         <Title>COVID-19 em {location.state.state}</Title>
         <Title>{new Date().toLocaleDateString("pt-BR")}</Title>
       </TitleBox>
-      
+      <InputComponent
+        value={search}
+        placeholder={"Digite o nome da cidade"}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+        onKeyPressCapture={(e) => {
+          if (e.key == "Enter") {
+            getCityCases(search, location.state.state, setScenario);
+          }
+        }}
+      />
     </Container>
   );
 }

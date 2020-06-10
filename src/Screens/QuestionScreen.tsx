@@ -15,6 +15,12 @@ const Container = styled(motion.div)`
   padding: 100px 30px 100px 30px;
   overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const TitleBox = styled.div`
