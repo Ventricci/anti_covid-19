@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import HomeCard from "../Components/HomeCard";
 import { URL_API } from "../Config/GlobalVariables";
 import { useLocation } from "react-router-dom";
@@ -23,7 +23,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 100px 30px 100px 30px;
-  
+
   overflow-x: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -72,7 +72,7 @@ async function getCases(setCases: Function) {
       },
     }
   );
-  if (response.status == 200) {
+  if (response.status === 200) {
     let responseObject = await response.json();
     let totalDeaths = 0;
     let totalConfirmed = 0;
@@ -85,6 +85,7 @@ async function getCases(setCases: Function) {
         epicenterConfirmed = state.confirmed;
         epicenterState = state.state;
       }
+      return 0;
     });
     setCases({
       deaths: totalDeaths,
@@ -113,7 +114,9 @@ export default function HomeScreen() {
   return (
     <Container
       initial={
-        location.state?.prevLocation == "/question" ? "questionOut" : "stateOut"
+        location.state?.prevLocation === "/question"
+          ? "questionOut"
+          : "stateOut"
       }
       animate={"in"}
       exit={{ opacity: 0 }}

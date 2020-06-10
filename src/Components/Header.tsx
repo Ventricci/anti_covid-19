@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 const logo = require("../Images/logo.png");
 
@@ -46,14 +44,13 @@ const HeaderLogo = styled.div`
 `;
 
 export default function Header() {
-  let location = useLocation();
-
   return (
     <HeaderBox>
       <HeaderTitle>Anti COVID-19</HeaderTitle>
       <HeaderLogo>
         <img
           src={logo}
+          alt=""
           css={css`
             width: 50px;
             height: 50px;

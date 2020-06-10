@@ -52,11 +52,11 @@ export default function Footer() {
   let [selected, setSelected] = useState<"home" | "question" | "state">("home");
 
   useEffect(() => {
-    if (location.pathname == "/question") {
+    if (location.pathname === "/question") {
       setSelected("question");
-    } else if (location.pathname == "/state") {
+    } else if (location.pathname === "/state") {
       setSelected("state");
-    } else if (location.pathname == "/") {
+    } else if (location.pathname === "/") {
       setSelected("home");
     }
   }, [location.pathname]);
@@ -64,7 +64,7 @@ export default function Footer() {
   return (
     <FooterBox>
       <FooterButton
-        animate={selected == "question" ? "opend" : "closed"}
+        animate={selected === "question" ? "opend" : "closed"}
         variants={active}
         onClick={() => {
           history.replace("/question");
@@ -72,6 +72,7 @@ export default function Footer() {
       >
         <img
           src={question}
+          alt=""
           css={css`
             width: 30px;
             height: 30px;
@@ -81,7 +82,7 @@ export default function Footer() {
         dúvidas
       </FooterButton>
       <FooterButton
-        animate={selected == "home" ? "opend" : "closed"}
+        animate={selected === "home" ? "opend" : "closed"}
         variants={active}
         onClick={() => {
           history.replace("/", { prevLocation: location.pathname });
@@ -89,6 +90,7 @@ export default function Footer() {
       >
         <img
           src={home}
+          alt=""
           css={css`
             width: 30px;
             height: 30px;
@@ -98,7 +100,7 @@ export default function Footer() {
         início
       </FooterButton>
       <FooterButton
-        animate={selected == "state" ? "opend" : "closed"}
+        animate={selected === "state" ? "opend" : "closed"}
         variants={active}
         onClick={() => {
           history.replace("/state");
@@ -106,6 +108,7 @@ export default function Footer() {
       >
         <img
           src={brazil}
+          alt=""
           css={css`
             width: 30px;
             height: 30px;

@@ -11,6 +11,7 @@ interface Props {
   confirmed: number;
   newConfirmed: number;
   date: string;
+  render: Boolean;
 }
 
 const CardBox = styled(motion.div)`
@@ -33,7 +34,7 @@ const CardHeader = styled.div`
   width: 100%;
   height: 10%;
 
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 
   color: #87ceeb;
   font-size: 24px;
@@ -62,7 +63,13 @@ const CardSpan = styled.span`
 
 export default function CityCard(props: Props) {
   return (
-    <CardBox>
+    <CardBox
+      initial={{ opacity: 0 }}
+      animate={
+        props.render ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+      }
+      transition={{ duration: 0.25 }}
+    >
       <CardHeader>
         {props.city} - {props.state}
       </CardHeader>
@@ -82,6 +89,7 @@ export default function CityCard(props: Props) {
         <CardSpan
           css={css`
             text-align: justify;
+            padding-top: 15px;
           `}
         >
           * Novos óbitos e novos casos confirmados são contabilizados a partir

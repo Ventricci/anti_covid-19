@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   state: string;

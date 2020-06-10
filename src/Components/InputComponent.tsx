@@ -1,8 +1,8 @@
+/** @jsx jsx */
 import "typeface-mako";
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-import React, { InputHTMLAttributes, DetailedHTMLProps } from "react";
+import { InputHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface Props
   extends DetailedHTMLProps<

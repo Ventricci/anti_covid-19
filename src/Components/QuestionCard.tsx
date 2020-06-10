@@ -1,8 +1,6 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 interface Props {
   title: string;
@@ -81,7 +79,6 @@ const CardContent = styled.div`
 `;
 
 export default function QuestionCard(props: Props) {
-  let location = useLocation();
 
   return (
     <CardContainer>

@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import StateCard from "../Components/StateCard";
 import { URL_API } from "../Config/GlobalVariables";
 
@@ -58,7 +58,7 @@ async function getCases(cases: Cases[], setCases: Function) {
       },
     }
   );
-  if (response.status == 200) {
+  if (response.status === 200) {
     let responseObject = await response.json();
     setCases(responseObject.results);
   } else {
@@ -79,13 +79,13 @@ function compare(a: Cases, b: Cases) {
 export default function StateScreen() {
   let [cases, setCases] = useState<Cases[]>([]);
 
-  let location = useEffect(() => {
-    getCases(cases, setCases);
-  }, []);
-
   if (cases !== undefined) {
     cases.sort(compare);
   }
+
+  useEffect(() => {
+    getCases(cases, setCases);
+  }, []);
 
   return (
     <Container

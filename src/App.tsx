@@ -1,15 +1,9 @@
 /** @jsx jsx */
 import "typeface-mako";
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from "react-router-dom";
-import { jsx, css } from "@emotion/core";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import CityScreen from "./Screens/CityScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import QuestionScreen from "./Screens/QuestionScreen";

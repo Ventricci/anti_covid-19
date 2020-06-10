@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { URL_API } from "../Config/GlobalVariables";
 import { useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import InputComponent from "../Components/InputComponent";
 import CityCard from "../Components/CityCard";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Scenario {
   totalDeaths: number;
@@ -15,6 +15,8 @@ interface Scenario {
   newConfirmed: number;
   date: string;
 }
+
+const loadingIcon = require("../Images/loading.png");
 
 const Container = styled(motion.div)`
   box-sizing: border-box;
@@ -52,10 +54,20 @@ const Title = styled.span`
   font-size: 24px;
 `;
 
+const Error = styled.span`
+  padding: 0px;
+  margin: 10% 0px 0px 0px;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: justify;
+`;
+
 async function getCityCases(
   city: string,
   state: string,
-  setScenario: Function
+  setScenario: Function,
+  setError: Function,
+  setLoading: Function
 ) {
   let response = await fetch(
     `${URL_API}/caso_full/data?state=${state}&city=${city}&is_last=True`,
@@ -66,10 +78,13 @@ async function getCityCases(
       },
     }
   );
-  if (response.status == 200) {
+  if (response.status === 200) {
     let responseObject = await response.json();
     if (responseObject.results.length > 0) {
+      console.log(responseObject.results);
       let scenario = responseObject.results[0];
+      console.log(scenario.date);
+      setLoading(false);
       setScenario({
         totalDeaths: scenario.last_available_deaths,
         newDeaths: scenario.new_deaths,
@@ -77,17 +92,30 @@ async function getCityCases(
         newConfirmed: scenario.new_confirmed,
         date: scenario.date,
       });
+      setError({ status: false, message: "" });
     } else {
-      console.log("Não encontrou");
+      setLoading(false);
+      setError({
+        status: true,
+        message:
+          "Não existem informações sobre a cidade informada. Verifique se o nome da mesma foi inserida corretamente ou se o governo local tem disponibilizado os número de casos à Secretaria de Saúde de seu Estado e cobre os governantes responsáveis.",
+      });
     }
   } else {
-    console.log(response.status);
+    setLoading(false);
+    setError({
+      status: true,
+      message:
+        "Houve um erro ao tentar recuperar os dados. Verifique sua conexão com a Internet e tente novamente.",
+    });
   }
 }
 
 export default function CityScreen() {
   let location = useLocation<{ state: string }>();
-
+  let [error, setError] = useState({ status: false, message: "" });
+  let [visible, setVisible] = useState(false);
+  let [loading, setLoading] = useState(false);
   let [search, setSearch] = useState("");
   let [scenario, setScenario] = useState<Scenario>({
     totalDeaths: 0,
@@ -96,6 +124,14 @@ export default function CityScreen() {
     newConfirmed: 0,
     date: "",
   });
+
+  useEffect(() => {
+    if (scenario.date !== "") {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  }, [scenario]);
 
   return (
     <Container
@@ -113,22 +149,50 @@ export default function CityScreen() {
         placeholder={"Digite o nome da cidade"}
         onChange={(e) => {
           setSearch(e.target.value);
+          setVisible(false);
+          setError({ status: false, message: "" });
         }}
         onKeyPressCapture={(e) => {
-          if (e.key == "Enter") {
-            getCityCases(search, location.state.state, setScenario);
+          if (e.key === "Enter") {
+            setLoading(true);
+            setTimeout(() => {
+              getCityCases(
+                search,
+                location.state.state,
+                setScenario,
+                setError,
+                setLoading
+              );
+            }, 1000);
           }
         }}
       />
-      <CityCard
-        city={search}
-        state={location.state.state}
-        deaths={scenario.totalDeaths}
-        newDeaths={scenario.newDeaths}
-        confirmed={scenario.totalConfirmed}
-        newConfirmed={scenario.newConfirmed}
-        date={scenario.date}
-      />
+      {loading ? (
+        <motion.img
+          animate={{ rotate: 360 }}
+          transition={{ loop: Infinity, duration: 1, ease: "linear" }}
+          src={loadingIcon}
+          css={css`
+            margin-top: 30%;
+            width: 50px;
+            height: 50px;
+          `}
+        />
+      ) : null}
+      {error.status ? (
+        <Error>{error.message}</Error>
+      ) : (
+        <CityCard
+          city={search}
+          state={location.state.state}
+          deaths={scenario.totalDeaths}
+          newDeaths={scenario.newDeaths}
+          confirmed={scenario.totalConfirmed}
+          newConfirmed={scenario.newConfirmed}
+          date={scenario.date.replace(/-/g, '\/')}
+          render={visible}
+        />
+      )}
     </Container>
   );
 }

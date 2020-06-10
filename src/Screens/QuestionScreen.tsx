@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import QuestionCard from "../Components/QuestionCard";
 
 const Container = styled(motion.div)`

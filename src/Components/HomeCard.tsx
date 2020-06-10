@@ -91,9 +91,9 @@ export default function HomeCard(props: Props) {
   return (
     <CardBox
       css={css`
-        background-color: ${props.type == "deaths"
+        background-color: ${props.type === "deaths"
           ? `#FF0000`
-          : props.type == "confirmed"
+          : props.type === "confirmed"
           ? `#FF8C00`
           : `#DAA520`};
       `}
@@ -101,7 +101,8 @@ export default function HomeCard(props: Props) {
       <CardImage>
         {props.state === undefined ? (
           <img
-            src={props.type == "deaths" ? deaths : coronaVirus}
+            src={props.type === "deaths" ? deaths : coronaVirus}
+            alt=""
             css={css`
               width: 75%;
               height: 75%;
