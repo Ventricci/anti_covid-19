@@ -32,8 +32,9 @@ const StyledInput = styled.input`
   font-family: Mako;
   font-size: 16px;
 
-  border: 2px solid #87ceeb;
+  border: none;
   border-radius: 15px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 `;
 
 const StyledImage = styled.img`

@@ -19,7 +19,6 @@ const CardBox = styled(motion.div)`
   display: flex;
   flex-direction: row;
 
-  border: 2px solid #87ceeb;
   border-radius: 20px;
   padding: 5px;
   background-color: #ffffff;

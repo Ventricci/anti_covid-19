@@ -5,13 +5,14 @@ import { URL_API } from "../Config/GlobalVariables";
 import { useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import InputComponent from "../Components/InputComponent";
+import CityCard from "../Components/CityCard";
 import React, { useEffect, useState } from "react";
 
 interface Scenario {
   totalDeaths: number;
   newDeaths: number;
   totalConfirmed: number;
-  newCOnfirmed: number;
+  newConfirmed: number;
   date: string;
 }
 
@@ -92,13 +93,9 @@ export default function CityScreen() {
     totalDeaths: 0,
     newDeaths: 0,
     totalConfirmed: 0,
-    newCOnfirmed: 0,
+    newConfirmed: 0,
     date: "",
   });
-
-  useEffect(() => {
-    console.log(scenario);
-  }, [scenario]);
 
   return (
     <Container
@@ -122,6 +119,15 @@ export default function CityScreen() {
             getCityCases(search, location.state.state, setScenario);
           }
         }}
+      />
+      <CityCard
+        city={search}
+        state={location.state.state}
+        deaths={scenario.totalDeaths}
+        newDeaths={scenario.newDeaths}
+        confirmed={scenario.totalConfirmed}
+        newConfirmed={scenario.newConfirmed}
+        date={scenario.date}
       />
     </Container>
   );

@@ -93,7 +93,7 @@ export default function QuestionScreen() {
         <QuestionCard
           title={"Quais as recomendações de prevenção à COVID-19?"}
           content={
-            "O ministério da saúde disponibiliza foras de se proteger em seu website: coronavius.saude.gov.br/sobre-a-doenca"
+            "O ministério da saúde disponibiliza formas de se proteger em seu website: coronavius.saude.gov.br/sobre-a-doenca"
           }
         />
         <QuestionCard

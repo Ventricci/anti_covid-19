@@ -10,13 +10,13 @@ interface Props {
 }
 const CardContainer = styled.div`
   box-sizing: border-box;
-  padding: 0% 10% 0% 10%;
+  padding: 0% 5% 0% 5%;
 
   display: flex;
   flex-shrink: 0;
 
-  width: 80vw;
-  height: 80%;
+  width: 90%;
+  height: 90%;
 `;
 
 const CardBox = styled.div`
@@ -32,8 +32,7 @@ const CardBox = styled.div`
 
   background-color: #ffffff;
   border-radius: 20px;
-  border: 2px solid #87ceeb;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 `;
 
 const CardHeader = styled.div`
