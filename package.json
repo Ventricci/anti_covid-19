@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "2.1.2",
+    "@capacitor/cli": "^2.1.2",
     "@capacitor/core": "^2.1.2",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",

@@ -92,10 +92,10 @@ export default function HomeCard(props: Props) {
     <CardBox
       css={css`
         background-color: ${props.type === "deaths"
-          ? `#FF0000`
+          ? `#b22222`
           : props.type === "confirmed"
-          ? `#FF8C00`
-          : `#DAA520`};
+          ? `#ff8300`
+          : `#d1a987`};
       `}
     >
       <CardImage>

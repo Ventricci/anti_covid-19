@@ -12,15 +12,13 @@ const brazil = require("../Images/brazil.png");
 const FooterBox = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 100px;
+  height: 80px;
 
   position: absolute;
-  bottom: -15px;
-  padding: 15px;
+  bottom: 0px;
 
   background-color: #ffffff;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
 
   display: flex;
   flex-direction: row;
@@ -33,7 +31,6 @@ const FooterButton = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 15px;
   font-size: 12px;
 `;
 

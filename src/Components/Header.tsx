@@ -7,7 +7,7 @@ const logo = require("../Images/logo.png");
 const HeaderBox = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 85px;
+  height: 80px;
 
   z-index: 1;
   display: flex;

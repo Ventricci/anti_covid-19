@@ -9,7 +9,7 @@ interface Props
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  name?: string;
+  onSearchClick: () => any;
 }
 
 const search = require("../Images/search.png");
@@ -47,7 +47,7 @@ export default function InputComponent(props: Props) {
   return (
     <InputContainer>
       <StyledInput {...props} />
-      <StyledImage src={search} />
+      <StyledImage src={search} onClick={props.onSearchClick} />
     </InputContainer>
   );
 }

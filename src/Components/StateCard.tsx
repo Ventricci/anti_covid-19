@@ -19,7 +19,7 @@ const CardBox = styled(motion.div)`
   display: flex;
   flex-direction: row;
 
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 5px;
   background-color: #ffffff;
   font-family: Mako;
@@ -80,7 +80,9 @@ export default function StateCard(props: Props) {
     <CardBox
       whileTap={{
         scale: 0.95,
-        transitionEnd: { boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.20)" },
+        transitionEnd: {
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.15)",
+        },
       }}
       onClick={() => history.push("/city", { state: props.state })}
     >

@@ -1,20 +1,21 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface Props {
   title: string;
   content: string;
 }
-const CardContainer = styled.div`
+const CardContainer = styled(motion.div)`
   box-sizing: border-box;
-  padding: 0% 5% 0% 5%;
 
   display: flex;
   flex-shrink: 0;
 
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  margin: 0 0 20px 0;
 `;
 
 const CardBox = styled.div`
@@ -26,19 +27,17 @@ const CardBox = styled.div`
   flex-shrink: 0;
 
   width: 100%;
-  height: 100%;
 
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 `;
 
 const CardHeader = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: auto;
-
   padding: 5px;
+
   @media (min-width: 400px) {
     font-size: 18px;
   }
@@ -51,18 +50,20 @@ const CardHeader = styled.div`
   @media (max-width: 320px) {
     font-size: 12px;
   }
+
   text-align: justify;
   font-weight: bold;
   text-align: justify;
   color: #87ceeb;
 `;
 
-const CardContent = styled.div`
+const CardContent = styled(motion.div)`
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
+
+  overflow: hidden;
   padding: 5px;
+
   @media (min-width: 400px) {
     font-size: 16px;
   }
@@ -75,16 +76,36 @@ const CardContent = styled.div`
   @media (max-width: 320px) {
     font-size: 10px;
   }
+
   text-align: justify;
 `;
 
 export default function QuestionCard(props: Props) {
+  let [visible, setVisible] = useState(false);
 
   return (
-    <CardContainer>
+    <CardContainer
+      onClick={() => {
+        if (visible) {
+          setVisible(false);
+        } else {
+          setVisible(true);
+        }
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
       <CardBox>
         <CardHeader>{props.title}</CardHeader>
-        <CardContent>{props.content}</CardContent>
+        <CardContent
+          animate={
+            visible
+              ? { height: "auto", padding: "5px" }
+              : { height: 0, padding: 0 }
+          }
+          transition={{ stiffness: 10 }}
+        >
+          {props.content}
+        </CardContent>
       </CardBox>
     </CardContainer>
   );

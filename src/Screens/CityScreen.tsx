@@ -7,14 +7,18 @@ import styled from "@emotion/styled";
 import InputComponent from "../Components/InputComponent";
 import CityCard from "../Components/CityCard";
 import { useEffect, useState } from "react";
+import { Plugins } from "@capacitor/core";
 
 interface Scenario {
+  cityName: string;
   totalDeaths: number;
   newDeaths: number;
   totalConfirmed: number;
   newConfirmed: number;
   date: string;
 }
+
+const { Keyboard } = Plugins;
 
 const loadingIcon = require("../Images/loading.png");
 
@@ -81,11 +85,10 @@ async function getCityCases(
   if (response.status === 200) {
     let responseObject = await response.json();
     if (responseObject.results.length > 0) {
-      console.log(responseObject.results);
       let scenario = responseObject.results[0];
-      console.log(scenario.date);
       setLoading(false);
       setScenario({
+        cityName: scenario.city,
         totalDeaths: scenario.last_available_deaths,
         newDeaths: scenario.new_deaths,
         totalConfirmed: scenario.last_available_confirmed,
@@ -111,6 +114,28 @@ async function getCityCases(
   }
 }
 
+function capitalize(text: string) {
+  text = text.toLowerCase().replace(/(?:^|\s)\S/g, function (capitalize) {
+    return capitalize.toUpperCase();
+  });
+  //preposição digitada
+  var PreposM = ["Da", "Do", "Das", "Dos", "A", "E", "De", "DE"];
+  //preposição substituta
+  var prepos = ["da", "do", "das", "dos", "a", "e", "de", "de"];
+
+  for (var i = PreposM.length - 1; i >= 0; i--) {
+    text = text.replace(
+      RegExp(
+        "\\b" + PreposM[i].replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&") + "\\b",
+        "g"
+      ),
+      prepos[i]
+    );
+  }
+
+  return text;
+}
+
 export default function CityScreen() {
   let location = useLocation<{ state: string }>();
   let [error, setError] = useState({ status: false, message: "" });
@@ -118,12 +143,272 @@ export default function CityScreen() {
   let [loading, setLoading] = useState(false);
   let [search, setSearch] = useState("");
   let [scenario, setScenario] = useState<Scenario>({
+    cityName: "",
     totalDeaths: 0,
     newDeaths: 0,
     totalConfirmed: 0,
     newConfirmed: 0,
     date: "",
   });
+
+  useEffect(() => {
+    setLoading(true);
+    switch (location.state.state) {
+      case "AC":
+        getCityCases(
+          "Rio Branco",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "AL":
+        getCityCases(
+          "Maceió",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "AP":
+        getCityCases(
+          "Macapá",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "AM":
+        getCityCases(
+          "Manaus",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "BA":
+        getCityCases(
+          "Salvador",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "CE":
+        getCityCases(
+          "Fortaleza",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "DF":
+        getCityCases(
+          "Brasília",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "ES":
+        getCityCases(
+          "Vitória",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "GO":
+        getCityCases(
+          "Goiânia",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "MA":
+        getCityCases(
+          "São Luís",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+
+      case "MT":
+        getCityCases(
+          "Cuiabá",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "MS":
+        getCityCases(
+          "Campo Grande",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "MG":
+        getCityCases(
+          "Belo Horizonte",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "MS":
+        getCityCases(
+          "Campo Grande",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "PA":
+        getCityCases(
+          "Belém",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "PB":
+        getCityCases(
+          "João Pessoa",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "PR":
+        getCityCases(
+          "Curitiba",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "PE":
+        getCityCases(
+          "Recife",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "PI":
+        getCityCases(
+          "Teresina",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "RJ":
+        getCityCases(
+          "Rio de Janeiro",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "RN":
+        getCityCases(
+          "Natal",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "RS":
+        getCityCases(
+          "Porto Alegre",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "RO":
+        getCityCases(
+          "Porto Velho",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "RR":
+        getCityCases(
+          "Boa Vista",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "SC":
+        getCityCases(
+          "Florianópolis",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "SP":
+        getCityCases(
+          "São Paulo",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "SE":
+        getCityCases(
+          "Aracaju",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+      case "TO":
+        getCityCases(
+          "Palmas",
+          location.state.state,
+          setScenario,
+          setError,
+          setLoading
+        );
+        break;
+    }
+  }, []);
 
   useEffect(() => {
     if (scenario.date !== "") {
@@ -142,7 +427,7 @@ export default function CityScreen() {
     >
       <TitleBox>
         <Title>COVID-19 em {location.state.state}</Title>
-        <Title>{new Date().toLocaleDateString("pt-BR")}</Title>
+        <Title>Casos por cidade</Title>
       </TitleBox>
       <InputComponent
         value={search}
@@ -153,8 +438,12 @@ export default function CityScreen() {
           setError({ status: false, message: "" });
         }}
         onKeyPressCapture={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && search !== "") {
+            Keyboard.hide();
+            setVisible(false);
+            setError({ status: false, message: "" });
             setLoading(true);
+            search = capitalize(search);
             setTimeout(() => {
               getCityCases(
                 search,
@@ -164,6 +453,36 @@ export default function CityScreen() {
                 setLoading
               );
             }, 1000);
+          } else {
+            setVisible(false);
+            setError({
+              status: true,
+              message: "Entre com o nome de uma cidade.",
+            });
+          }
+        }}
+        onSearchClick={() => {
+          if (search !== "") {
+            Keyboard.hide();
+            setVisible(false);
+            setError({ status: false, message: "" });
+            setLoading(true);
+            search = capitalize(search);
+            setTimeout(() => {
+              getCityCases(
+                search,
+                location.state.state,
+                setScenario,
+                setError,
+                setLoading
+              );
+            }, 1000);
+          } else {
+            setVisible(false);
+            setError({
+              status: true,
+              message: "Entre com o nome de uma cidade.",
+            });
           }
         }}
       />
@@ -183,13 +502,13 @@ export default function CityScreen() {
         <Error>{error.message}</Error>
       ) : (
         <CityCard
-          city={search}
+          city={scenario.cityName}
           state={location.state.state}
           deaths={scenario.totalDeaths}
           newDeaths={scenario.newDeaths}
           confirmed={scenario.totalConfirmed}
           newConfirmed={scenario.newConfirmed}
-          date={scenario.date.replace(/-/g, '\/')}
+          date={scenario.date.replace(/-/g, "/")}
           render={visible}
         />
       )}

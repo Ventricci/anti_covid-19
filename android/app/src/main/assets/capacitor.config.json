@@ -1,0 +1,14 @@
+{
+  "appId": "com.example.anticovid19",
+  "appName": "Anti COVID-19",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
+  "cordova": {}
+}

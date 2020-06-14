@@ -93,7 +93,7 @@ export default function CityCard(props: Props) {
           `}
         >
           * Novos óbitos e novos casos confirmados são contabilizados a partir
-          do boletim publicado imediatamente antes ao da data atual.
+          do boletim publicado imediatamente anterior ao da data atual.
         </CardSpan>
       </CardContent>
       <CardFooter>
