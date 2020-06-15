@@ -22,7 +22,7 @@ const HeaderBox = styled.div`
   box-shadow: 0px -10px 25px rgba(0, 0, 0, 0.25);
   font-size: 30px;
   font-weight: normal;
-  color: #87ceeb;
+  color: #1b425d;
 `;
 
 const HeaderTitle = styled.div`

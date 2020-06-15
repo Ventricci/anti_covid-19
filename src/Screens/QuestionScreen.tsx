@@ -62,7 +62,7 @@ export default function QuestionScreen() {
           "Os dados do Ministério da Saúde estão diferentes dos dados do aplicativo. Qual está correto?"
         }
         content={
-          "Pode ser que a coleta dos dados pelos mantenedores da API que alimentam este aplicativo seja feita depois da coleta do Ministério da saúde e, com isso, torne os dados aqui disponibilizados mais atuais. Também pode acontecer o caso de a Secretaria Estadual informar ao Ministério da Saúde os dados antes de emitir um boletim público - nesse caso os dados aqui estarão desatualizados com relação ao ministério."
+          "Pode ser que a coleta dos dados pelos mantenedores da API que alimentam este aplicativo seja feita depois da coleta do Ministério da Saúde e, com isso, torne os dados aqui disponibilizados mais atuais. Também pode acontecer o caso de a Secretaria Estadual informar ao Ministério da Saúde os dados antes de emitir um boletim público - nesse caso os dados aqui estarão desatualizados com relação ao ministério."
         }
       />
       <QuestionCard

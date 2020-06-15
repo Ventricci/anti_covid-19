@@ -36,7 +36,7 @@ const CardHeader = styled.div`
 
   padding-bottom: 15px;
 
-  color: #87ceeb;
+  color: #1b425d;
   font-size: 24px;
 `;
 

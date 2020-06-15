@@ -36,7 +36,7 @@ const CardImage = styled(motion.div)`
   align-content: center;
   justify-content: center;
   justify-items: center;
-
+  color: #1b425d;
   opacity: 0.5;
 `;
 

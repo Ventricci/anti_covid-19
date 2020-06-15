@@ -40,7 +40,7 @@ const CardImage = styled(motion.div)`
   justify-content: center;
   justify-items: center;
 
-  opacity: 0.75;
+  opacity: 1;
 `;
 
 const CardBody = styled(motion.div)`
@@ -94,8 +94,8 @@ export default function HomeCard(props: Props) {
         background-color: ${props.type === "deaths"
           ? `#b22222`
           : props.type === "confirmed"
-          ? `#ff8300`
-          : `#d1a987`};
+          ? `#c9532c`
+          : `#e08336`};
       `}
     >
       <CardImage>

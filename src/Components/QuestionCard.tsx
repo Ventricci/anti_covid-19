@@ -54,7 +54,7 @@ const CardHeader = styled.div`
   text-align: justify;
   font-weight: bold;
   text-align: justify;
-  color: #87ceeb;
+  color: #1b425d;
 `;
 
 const CardContent = styled(motion.div)`
