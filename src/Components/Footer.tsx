@@ -12,7 +12,7 @@ const brazil = require("../Images/brazil.png");
 const FooterBox = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 80px;
+  height: 60px;
 
   position: absolute;
   bottom: 0px;
@@ -71,8 +71,8 @@ export default function Footer() {
           src={question}
           alt=""
           css={css`
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             padding-bottom: 5px;
           `}
         />
@@ -89,8 +89,8 @@ export default function Footer() {
           src={home}
           alt=""
           css={css`
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             padding-bottom: 5px;
           `}
         />
@@ -107,8 +107,8 @@ export default function Footer() {
           src={brazil}
           alt=""
           css={css`
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             padding-bottom: 5px;
           `}
         />
